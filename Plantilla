@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Plantilla</title>
+</head>
+
+<body>
+    <div>
+    <header>
+        <h1>ENCABEZADO</h1>
+        <nav>
+            <ul>
+                <li>MENU</li>
+                <li>DE</li>
+                <li>NAVEGACION</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+
+        </article>
+        <p>parte principal</p>
+    </main>
+
+    <footer>
+        <p>FOOTER</p>
+    </footer>
+</body>
+
+<!--https://caninclude.glitch.me/ -->
+
+</div>
+</html>
