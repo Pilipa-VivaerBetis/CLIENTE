@@ -1,0 +1,33 @@
+
+header {
+    border: 1px black;
+    background-color: red;
+   
+}
+
+nav {
+
+    background-color: yellow;
+    
+}
+
+
+nav ul li {
+    
+    list-style: none;
+    
+    background-color: blue;
+    display: inline-block;
+
+}
+
+main {
+    background-color: yellowgreen;
+ 
+}
+
+footer {
+
+    background-color: purple;
+   
+}
