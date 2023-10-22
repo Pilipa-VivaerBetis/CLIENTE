@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisible por 5</title>
+</head>
+
+<body>
+    <script>
+        //pedir al usuario que me de un numero
+        let numero = prompt("Escribe un número");
+        //convertir el valor que me ha dado a número
+        let numeroIngresado = parseFloat(numero);
+        //comprobar que el numero es divisible por 5
+        if(isNaN(numeroIngresado)){//isNaN es una función en JavaScript que significa "Is Not a Number" 
+        //(No es un número). Recibe un valor como argumento y devuelve true si ese valor no es un número y false
+         //si es un número o se puede convertir a un número. Es una manera de validar si un valor es numérico.
+            console.log ("Por favor, escribe un número válido");
+        }else if (numeroIngresado % 5 === 0) {
+            console.log(numeroIngresado + " es divisible por 5");
+        } else {
+            console.log(numeroIngresado + " no es divisible por 5");
+        }
+    </script>
+</body>
+
+</html>
