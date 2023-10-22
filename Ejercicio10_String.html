@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saber si el String empieza por letra o número</title>
+</head>
+
+<body>
+    <script>
+        /*Crear un programa que determine si un string 
+        introducido por un usuario empieza con un número
+         o con una letra.*/
+
+        var fraseUsuario = prompt("Escribe un string:");
+
+        //definimos una expresión regular para comprobar si el string comienza por un numero
+        var regexNumber = /^[0-9]/;
+
+        //uso la expresión regular para comprobar si el primer caracter es un nº
+        if (regexNumber.text(fraseUsuario)) {
+            console.log("El string comienza con un número");
+        } else {
+            console.log("El string comienza con una letra o un caracter especial");
+        }
+
+
+        /*Explicación del código:
+
+1. Solicitamos al usuario que introduzca un string utilizando prompt y almacenamos ese string
+ en la variable fraseUsuario.
+
+2. Luego, definimos una expresión regular llamada regexNumber que se encarga de buscar cualquier
+   carácter que sea un dígito del 0 al 9 al principio del string. La expresión regular ^[0-9] 
+   se desglosa de la siguiente manera:
+
+   ^: Esto asegura que la coincidencia se haga al principio del string.
+   [0-9]: Esto coincide con cualquier dígito del 0 al 9.
+
+3. Usamos el método test de la expresión regular para verificar si el primer carácter del fraseUsuario
+   cumple con la expresión regular regexNumber. Si lo hace, se muestra un mensaje en la consola indicando
+   que el string comienza con un número. De lo contrario, se muestra un mensaje indicando que 
+   el string comienza con una letra o un carácter especial.
+
+Este programa utiliza expresiones regulares para realizar la verificación, lo que lo hace flexible 
+y escalable para otros casos de validación de cadenas.*/
+    </script>
+
+</body>
+
+</html>
