@@ -1,0 +1,39 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola Mundo</title>
+</head>
+<body>
+<!--En este ejemplo, hemos creado una función llamada mostrarHolaMundo que contiene la lógica para mostrar
+la alerta con el mensaje "Hola mundo". Luego, utilizamos la propiedad onload del objeto window
+para asignar la función mostrarHolaMundo al evento de carga de la página. Esto asegura que la función
+se ejecute cuando la página haya terminado de cargarse. -->
+
+<script>
+    // Definir la función que mostrará la alerta
+    function mostrarHolaMundo() {
+        alert("Hola mundo");
+    }
+
+    // Asignar la función al evento onload del cuerpo de la página
+    window.onload = mostrarHolaMundo;
+</script>
+<!--1 window objeto: En el contexto del navegador web, el objeto window representa la ventana del navegador.
+Es el objeto global y contiene propiedades y métodos que se pueden usar en todo el documento.
+
+2 onload propiedad: onload es una propiedad del objeto window que representa el evento 
+de carga de la página. Cuando asignas una función a onload, esa función se ejecutará automáticamente cuando la página haya terminado de cargarse.
+
+3 Asignación de la función al evento de carga: Aquí, estamos diciendo que queremos que la función mostrarHolaMundo se ejecute cuando el evento
+de carga (onload) de la página ocurra. Al asignar mostrarHolaMundo a window.onload, estamos diciendo esencialmente:
+"cuando la página esté completamente cargada, ejecuta la función mostrarHolaMundo".
+
+4 mostrarHolaMundo función: Esta es la función que hemos definido. En este caso, simplemente muestra una alerta con el mensaje "Hola mundo".
+
+Entonces, en resumen, al asignar la función mostrarHolaMundo al evento de carga de la página, estamos garantizando que la alerta con el mensaje
+"Hola mundo" se mostrará después de que todos los elementos de la página se hayan cargado completamente en el navegador. Esto asegura una experiencia
+más consistente para el usuario, ya que la alerta no se mostrará hasta que la página esté lista para su interacción.-->
+<p>Hola Mundo</p>
+</body>
+</html>
