@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida</title>
+</head>
+
+<body onload="dameTuNombre()">
+    <h1 id="encab1">Encabezado nivel 1</h1>
+    <p>Cuando se cargue una página se debe mostrar una ventana donde
+        se pregunte tu nombre. Después se debe mostrar "Bienvenido,
+        TuNombre" en el encabezado de la página, y al cabo de los 3
+        segundos, en un encabezado de nivel 2, que escriba la dirección
+        URL de la página.(Valida la entrada para que no se pueda escribir
+        la cadena vacía o que no devuelva null)</p>
+    <h2></h2>
+    <script>
+
+        function dameTuNombre() {
+            let nombre;
+            nombre = prompt("Dame tu nombre");
+            if (nombre != "" && nombre != null){
+                alert("Nombre correcto")
+            }    
+            else { 
+                alert ("Nombre incorrecto");
+            }
+            document.getElementById("encab1").innerText = "Bienvenido " + nombre;
+
+        }
+
+        //escribirEncabezadoH1(NOMBRE);
+        setTimeout(escribirEncabezadoH2, 3000); // si envias una funcion como parametro a SetTimeOut tiene que ser sin parentesis, si no, se ejecuta inmediatamente
+
+        function escribirEncabezadoH2() {
+            let url;
+            document.getElementsByTagName('h2')[0].innerHTML = window.location.href;
+
+
+        }
+
+    </script>
+</body>
+
+</html>
