@@ -1,0 +1,27 @@
+/* Estilos iniciales de la lista y elementos */
+.listaInteractiva {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .listaInteractiva li {
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  
+  /* Clase con estilos que se aplicarán al hacer clic */
+  .listaInteractiva .clicado {
+    background-color: lightcoral;
+    letter-spacing: 2px;
+    text-decoration: line-through;
+    position: relative;
+  }
+  
+  .listaInteractiva .clicado::before {
+    content: "✘";
+    position: absolute;
+    left: -20px;
+    color: white;
+    font-weight: bold;
+  }
+  
