@@ -1,0 +1,26 @@
+<!-- Crea una página html en la que puedas introducir un nombre y una contraseña.
+Esa contraseña deberás compararla con una cookie que se almacenará en el nevegador
+al cargarse la página. Si la contraseña introducida coincide con la almacenada
+en la cookie, deberás generar un identificador para la sesión (un nº aleatorio
+por ejem) y lamacenarlo en otra cookie. También deberás preguntar al usuario
+si desea el modo claro o el modo oscuro (preferencias). Cuando hagas todo eso
+deberás servir otra página con un encabezado en el muestres: el nombre de usuario
+(inventado), el idenficador de la sesión y la preferencia seleccionada en la 
+pantalla anterior (claro-oscuro)-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" >
+        <input type="text" name="nombre" id="usuario">
+        <input type="password" name="contrasenia">
+    </form>
+</body>
+<script>
+    document.cookie="contrasenia=Admin123";//establezco la contraseña
+</script>
+</html>
