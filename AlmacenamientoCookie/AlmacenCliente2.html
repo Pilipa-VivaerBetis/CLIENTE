@@ -1,0 +1,54 @@
+<!-- Crea una página html en la que puedas introducir un nombre y una contraseña.
+Esa contraseña deberás compararla con una cookie que se almacenará en el nevegador
+al cargarse la página. Si la contraseña introducida coincide con la almacenada
+en la cookie, deberás generar un identificador para la sesión (un nº aleatorio
+por ejem) y almacenarlo en otra cookie. También deberás preguntar al usuario
+si desea el modo claro o el modo oscuro (preferencias). Cuando hagas todo eso
+deberás servir otra página con un encabezado en el muestres: el nombre de usuario
+(inventado), el idenficador de la sesión y la preferencia seleccionada en la 
+pantalla anterior (claro-oscuro)-->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <script src="funcionesCookie.js "></script>
+</head>
+
+<body>
+    <form action="#" method="post">
+        Nombre usuario: <input type="text" name="nombre" id="usuario">
+        Contraseña: <input type="password" id="contrasenia">
+        <button type="button" onclick="entrarAlPrograma()">Acceder</button>
+    </form>
+
+    <script>
+        // Establecer la contraseña en una cookie al cargar la página
+        setCookie('contrasenia', 'Admin123');
+
+        function entrarAlPrograma() {
+            let contraseniaGuardada = getCookie('contrasenia');
+            let contrasenia = document.getElementById('contrasenia').value;
+
+            if (contrasenia === contraseniaGuardada) {
+                // Generar un identificador de sesión aleatorio
+                let sessionId = Math.floor(Math.random() * 1000000);
+                setCookie('id_sesion', sessionId);
+
+                // Preguntar al usuario por su preferencia de modo
+                let modoPreferido = prompt('¿Prefieres modo claro o modo oscuro?');
+                setCookie('modo_preferido', modoPreferido);
+
+                // Redirigir a la página de inicio de sesión correcta
+                window.location.href = 'inicio_sesion_correcta.html';
+            } else {
+                alert('Nombre de usuario o contraseña incorrectos.');
+            }
+        }
+                
+    </script>
+</body>
+
+</html>

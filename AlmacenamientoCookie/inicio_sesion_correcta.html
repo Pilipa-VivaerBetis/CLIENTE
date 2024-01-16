@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio Sesión</title>
+    <script src="funcionesCookie.js "></script>
+</head>
+
+<body>
+    <h1>Datos del usuario</h1>
+    <script>
+        alert ("El nombre de usuario es: " + document.getElementById('usuario')) ;
+        alert ("El modo preferido es: " + getCookie('modo_preferido'));
+        alert ("El id de sesión generado es: " + getCookie('sessionId'));
+    </script>
+</body>
+
+</html>
