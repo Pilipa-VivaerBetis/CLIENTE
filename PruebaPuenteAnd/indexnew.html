@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andalucía Destinos</title>
+    <style>
+        /* Estilos para las imágenes */
+        .destination {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .destination img {
+            width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+        /* Estilos para la ruta */
+        .route {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="destinations">
+        <!-- Aquí se cargarán los destinos -->
+    </div>
+    <div class="route">
+        <h2>Ruta</h2>
+        <ul id="routeList"></ul>
+        <p>Total de días: <span id="totalDays">0</span></p>
+        <p>Costo total de alojamiento: <span id="totalCost">0</span></p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const provincias = [
+                {
+                    id: 1,
+                    nombre: "Sevilla",
+                    coste_alojamiento: 50,
+                    coste_alimentacion: 30,
+                    imagen: "sevilla.png"
+                },
+                {
+                    id: 2,
+                    nombre: "Almeria",
+                    coste_alojamiento: 12,
+                    coste_alimentacion: 22,
+                    imagen: "almeria.png"
+                },
+                {
+                    id: 3,
+                    nombre: "Granada",
+                    coste_alojamiento: 50,
+                    coste_alimentacion: 34,
+                    imagen: "granada.png"
+                },
+                {
+                    id: 4,
+                    nombre: "Málaga",
+                    coste_alojamiento: 60,
+                    coste_alimentacion: 35,
+                    imagen: "malaga.png"
+                },
+                {
+                    id: 5,
+                    nombre: "Huelva",
+                    coste_alojamiento: 24,
+                    coste_alimentacion: 15,
+                    imagen: "huelva.png"
+                },
+                {
+                    id: 6,
+                    nombre: "Jaen",
+                    coste_alojamiento: 32,
+                    coste_alimentacion: 15,
+                    imagen: "jaen.png"
+                },
+                {
+                    id: 7,
+                    nombre: "Cádiz",
+                    coste_alojamiento: 24,
+                    coste_alimentacion: 17,
+                    imagen: "cadiz.png"
+                },
+                {
+                    id: 8,
+                    nombre: "Córdoba",
+                    coste_alojamiento: 28,
+                    coste_alimentacion: 20,
+                    imagen: "cordoba.png"
+                }
+            ];
+
+            const destinationsContainer = document.querySelector('.destinations');
+            const routeList = document.getElementById('routeList');
+            const totalDaysElement = document.getElementById('totalDays');
+            const totalCostElement = document.getElementById('totalCost');
+            let totalDays = 0;
+            let totalCost = 0;
+            let selectedDestinations = [];
+
+            // Función para renderizar los destinos
+            function renderDestinations() {
+                destinationsContainer.innerHTML = ''; // Limpiamos el contenedor
+                provincias.forEach(destino => {
+                    const destinationDiv = document.createElement('div');
+                    destinationDiv.classList.add('destination');
+
+                    const destinationImage = document.createElement('img');
+                    destinationImage.src = destino.imagen;
+                    destinationImage.alt = destino.nombre;
+
+                    const destinationInfo = document.createElement('div');
+                    destinationInfo.innerHTML = `
+                        <h3>${destino.nombre}</h3>
+                        <p>Costo alojamiento: ${destino.coste_alojamiento}</p>
+                        <button onclick="addDestination(${destino.id})">Añadir a la ruta</button>
+                    `;
+
+                    destinationDiv.appendChild(destinationImage);
+                    destinationDiv.appendChild(destinationInfo);
+
+                    destinationsContainer.appendChild(destinationDiv);
+                });
+            }
+
+            // Función para añadir un destino a la ruta
+            function addDestination(destinationId) {
+                const destination = provincias.find(destino => destino.id === destinationId);
+                selectedDestinations.push(destination);
+                renderRoute();
+            }
+
+            // Función para eliminar un destino de la ruta
+            function removeDestination(index) {
+                selectedDestinations.splice(index, 1);
+                renderRoute();
+            }
+
+            // Función para renderizar la ruta
+            function renderRoute() {
+                routeList.innerHTML = '';
+                totalDays = 0;
+                totalCost = 0;
+
+                selectedDestinations.forEach((destination, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `${destination.nombre} - Costo alojamiento: ${destination.coste_alojamiento} <button onclick="removeDestination(${index})">Eliminar</button>`;
+                    routeList.appendChild(listItem);
+
+                    totalDays++;
+                    totalCost += destination.coste_alojamiento;
+                });
+
+                totalDaysElement.textContent = totalDays;
+                totalCostElement.textContent = totalCost;
+            }
+
+            // Cargamos los destinos al cargar la página
+            renderDestinations();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destino Andalucia</title>
+
+</head>
+<style>
+    .contenedorImagen {
+        width: 20%;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .calculadora {
+        border: 1px black solid;
+        width: 200px;
+        height: 300px;
+    }
+
+    .botonSumar {
+        border: 1px solid #2e518b;
+        /*anchura, estilo y color borde*/
+        padding: 10px;
+        /*espacio alrededor texto*/
+        background-color: #2e518b;
+        /*color botón*/
+        color: #ffffff;
+        /*color texto*/
+        text-decoration: none;
+        /*decoración texto*/
+        text-transform: uppercase;
+        /*capitalización texto*/
+        font-family: 'Helvetica', sans-serif;
+        /*tipografía texto*/
+        border-radius: 30px;
+        /*bordes redondos*/
+    }
+
+    .botonRestar {
+        border: 1px solid #368b2e;
+        /*anchura, estilo y color borde*/
+        padding: 10px;
+        /*espacio alrededor texto*/
+        background-color: #3a8b2e;
+        /*color botón*/
+        color: #ffffff;
+        /*color texto*/
+        text-decoration: none;
+        /*decoración texto*/
+        text-transform: uppercase;
+        /*capitalización texto*/
+        font-family: 'Helvetica', sans-serif;
+        /*tipografía texto*/
+        border-radius: 30px;
+        /*bordes redondos*/
+    }
+    .calculadoraRuta{
+        width: 200px;
+        background-color: yellow;
+        text-align: center;
+    }
+    .margen{
+        margin: 10px;
+    }
+</style>
+
+<body>
+    <h1>¡Elije tu ruta para el Puente de Andalucia!</h1>
+    <div class="ContenedorDestinos">
+        <h2>Destinos en Andalucia</h2>
+        <p>id: 1</p>
+        <p class="infoDestino">Informacion del destino</p>
+        <p>
+            <span class="precioAlojamiento">Coste del alojamiento:</span>
+        </p>
+        <p>
+            <span class="precioAlimentacion">Coste de la comida:</span>
+        </p>
+        <div class="contenedorImagen">
+            <img src="Sevilla.png" alt="destino1">
+        </div>
+        <button id="añadirDestino">Añadir Destino</button>
+        <button id="eliminarDestino">Eliminar destino</button>
+
+    </div>
+    <ul id="lista">
+
+    </ul>
+    <div class="calculadoraRuta">
+        <h1>Calculadora de rutas</h1>
+        <button class="botonSumar">
+            Sumar
+        </button>
+        <button class="botonRestar">
+            Restar
+        </button>
+        <h4 class="margen">Contador: <span id="span">0</span></h4>
+    </div>
+    <script src="indexLunes.js"></script>
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector('h1').textContent = 'Texto desde JS';
+        });
+    </script> -->
+
+</body>
+
+</html>

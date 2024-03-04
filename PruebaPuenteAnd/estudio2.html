@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- <p class="parrafo" id="mi-id">Hola este es mi párrafo</p>
+<p class="parrafo" id="mi-id-dos">Hola este es mi párrafo</p>
+
+<script>
+  console.log(document.head);
+  console.log(document.body);
+  console.log(document.getElementById("mi-id"));
+  console.log(document.querySelector("#mi-id"));
+  console.log(document.querySelector(".mi-id"));
+  console.log(document.querySelector("p"));
+  console.log(document.querySelectorAll("p"));
+</script>
+
+//Buscar elementos html
+<p class="parrafo" id="mi-id">Hola este es mi párrafo</p>
+<p class="parrafo" id="mi-id-dos">Hola este es mi párrafo</p>
+
+<script>
+  console.log(document.head);
+  console.log(document.body);
+  console.log(document.getElementById("mi-id"));
+  console.log(document.querySelector("#mi-id"));
+  console.log(document.querySelector(".mi-id"));
+  console.log(document.querySelector("p"));
+  console.log(document.querySelectorAll("p"));
+</script> -->
+
+<!-- //1. Accedo al elementos
+//2. Modificamos el elemento
+<p class="parrafo" id="mi-id">Hola este es mi párrafo</p>
+
+<script>
+  const parrafo = document.querySelector(".parrafo");
+  parrafo.textContent = "Parrafo dinámico";
+</script> -->
+// Agregamos texto + etiquetas html
+parrafo.innerHTML = "<b>Texto destacado</b> dentro de párrafo";
+
+// Nos devuelve la clase del párrafo
+console.log(parrafo.className);
+
+// Agregamos una clase adicional
+parrafo.classList.add("clase-adicional");
+console.log(parrafo);
+
+<p>En un documento HTML, el método document.createElement()
+    crea un elemento HTML especificado por su tagName.</p>  
+<ul id="lista-dinamica"></ul>
+
+<script>
+  // elemento donde vamos a incorporar los <li>
+  const lista = document.getElementById("lista-dinamica");
+
+  // Creamos el <li>
+  const li = document.createElement("li");
+
+  // Agregamos texto al <li>
+  li.textContent = "Mi <li> dinámico";
+
+  // Finalmente incorporamos al <ul>
+  lista.appendChild(li);
+</script>
+
+<br>
+
+<ul id="lista2-dinamica"></ul>
+
+<script>
+    //Se utiliza como una versión ligera de Document 
+    //que almacena un segmento de una estructura de documento 
+    //compuesta de nodos como un documento estándar.Por ende
+    // en un fragment vamos a guardar todo un template o nodos HTML que luego pintaremos en nuestro DOM, así evitamos en mayor parte el Reflow.
+  const lista2 = document.getElementById("lista2-dinamica");
+
+  const arrayItem = ["item 1", "item 2", "item 3"];
+
+  const fragment = document.createDocumentFragment();
+
+  arrayItem.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    fragment.appendChild(li);
+  });
+
+  lista.appendChild(fragment);
+</script>
+    
+</body>
+</html>
