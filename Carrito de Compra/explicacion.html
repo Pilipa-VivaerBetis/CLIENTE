@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    const productos = document.getElementById('productos');
+    productos.addEventListener('click', function(event) {
+        if (event.target.tagName === 'BUTTON') {
+            const producto = event.target.getAttribute('data-producto');
+            agregarProducto(producto);
+        }
+    });
+    <!--el código del addEventListener: Este bloque de código
+        está asociado a un evento de clic (click) en el elemento con el id 'productos'.
+        Aquí tienes una explicación detallada:-->
+    <!--1.'const productos = document.getElementById('productos');:
+         Selecciona el elemento del DOM con el id 'productos' y lo
+         almacena en la variable productos. Este elemento representa
+         la sección de la página que contiene los productos disponibles para su selección.
+        2. productos.addEventListener('click', function(event) {: Agrega un
+         "escuchador de eventos" al elemento productos para el evento de clic
+         (click). Cuando ocurra un clic dentro de la sección de productos, se
+          ejecutará la función que sigue.
+        3. if (event.target.tagName === 'BUTTON') {: Comprueba si el elemento
+          en el que se hizo clic (event.target) es un botón (<button>). Esto 
+          es importante porque estamos interesados solo en los clics en los botones
+           de productos y no en cualquier otro clic dentro de la sección de productos.
+        4. 'const producto = event.target.getAttribute('data-producto');: Obtiene el valor
+           del atributo data-producto del botón en el que se hizo clic. El atributo data-producto
+           contiene la identificación única del producto asociado al botón. Esta información
+           se utiliza para identificar qué producto se ha seleccionado. 
+        5. 'agregarProducto(producto);: Llama a la función agregarProducto con el identificador
+           único del producto como argumento. Esta función se encargará de añadir el producto
+           correspondiente al carrito de compras.-->
+
+agregarProducto(id) {
+                const productoSeleccionado = document.getElementById(id);
+                const titulo = productoSeleccionado.querySelector('h3').innerText;
+                const precioTexto = productoSeleccionado.querySelector('p').innerText.split(' ')[1];
+                const precio = Number(precioTexto.substring(0, precioTexto.length - 1));
+
+                carrito.push({ id, titulo, precio });
+                mostrarCarrito();
+            }
+        <!--1. 'const productoSeleccionado = document.getElementById(id);: Esta línea selecciona
+                el elemento del DOM correspondiente al producto que se va a agregar al carrito. 
+               Utiliza el ID del producto pasado como argumento id para encontrar el elemento adecuado en el DOM.
+            2.  'const titulo = productoSeleccionado.querySelector('h3').innerText;: Utiliza querySelector('h3')
+                para seleccionar el elemento <h3> dentro del producto seleccionado y obtiene el texto dentro de
+                él usando .innerText. Esto representa el título del producto que se va a agregar al carrito.
+            3.  'const precioTexto = productoSeleccionado.querySelector('p').innerText.split(' ')[1];: Similar al
+                paso anterior, esta línea selecciona el elemento <p> dentro del producto seleccionado para obtener
+                el texto que representa el precio. Luego, usa .split(' ') para dividir el texto en partes basadas
+                en el espacio en blanco y selecciona la segunda parte (índice 1), que debería ser la parte que contiene el precio.
+            4.  'const precio = Number(precioTexto.substring(0, precioTexto.length - 1));: Con precioTexto, hemos
+                 obtenido algo como "1€", "2€", etc. Para extraer solo el valor numérico, usamos substring(0, precioTexto.length - 1)
+                 para eliminar el último carácter, que es el símbolo "€". Luego, convertimos el precio a un número usando Number()  
+            5.  'carrito.push({ id, titulo, precio });: Agrega un nuevo objeto al array carrito. Este objeto contiene la información
+                 del producto seleccionado: su id, titulo y precio'
+            6.   'mostrarCarrito();: Llama a la función mostrarCarrito(). Después de agregar un producto al carrito, esta función 
+                 se encarga de actualizar la visualización del carrito en la página, mostrando los productos actuales y recalculando los totales.
+                 ' Sigue comentado en cada linea del código en selectorProductos.html-->
+</body>
+</html>

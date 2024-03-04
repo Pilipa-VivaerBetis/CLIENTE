@@ -1,0 +1,38 @@
+[
+    {
+        "precio": 5,
+        "id":1,
+        "titulo": "Café",
+        "imagen": "taza.png"
+    },
+    {
+        "precio": 15,
+        "id":2,
+        "titulo": "Pizza",
+        "imagen": "pizza.png"
+    },
+    {
+        "precio": 5,
+        "id":3,
+        "titulo": "Agua",
+        "imagen": "agua.png"
+    },
+    {
+        "precio": 25,
+        "id":4,
+        "titulo": "Sandia",
+        "imagen": "sandia.png"
+    },
+    {
+        "precio": 30,
+        "id":5,
+        "titulo": "Mango",
+        "imagen": "mango.png"
+    },
+    {
+        "precio": 15,
+        "id":6,
+        "titulo": "Patata",
+        "imagen": "patata.png"
+    }
+]
