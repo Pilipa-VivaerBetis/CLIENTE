@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinos en Andalucía</title>
+    <style>
+        /* Estilo para el contenedor principal */
+        .contenedor {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        /* Estilos para el contenedor de destinos */
+        .destinos {
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .destino {
+            width: 50%;
+            padding: 10px;
+        }
+
+        .destino img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos para el contenedor de la ruta */
+        .ruta {
+            width: 40%;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        /* Estilos para la lista de la ruta */
+        #listaRuta {
+            list-style: none;
+            padding: 0;
+        }
+
+        #listaRuta li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="destinos">
+            <!-- Aquí se cargarán los destinos -->
+        </div>
+        <div class="ruta">
+            <h2>Ruta</h2>
+            <ul id="listaRuta"></ul>
+            <p>Total de días: <span id="totalDias">0 días</span></p>
+            <p>Coste total de alojamiento: <span id="costoTotal">0 €</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Se agrega un event listener para el evento DOMContentLoaded,
+        // que se dispara cuando el HTML y los recursos asociados se han cargado y analizado completamente.
+        document.addEventListener('DOMContentLoaded', function () {
+            const provincias = [
+                {
+                    id: 1,
+                    nombre: "Sevilla",
+                    costoAlojamiento: 50,
+                    costoAlimentacion: 30,
+                    imagen: "sevilla.png"
+                },
+                {
+                    id: 2,
+                    nombre: "Almería",
+                    costoAlojamiento: 12,
+                    costoAlimentacion: 22,
+                    imagen: "almeria.png"
+                },
+                {
+                    id: 3,
+                    nombre: "Granada",
+                    costoAlojamiento: 50,
+                    costoAlimentacion: 34,
+                    imagen: "granada.png"
+                },
+                {
+                    id: 4,
+                    nombre: "Málaga",
+                    costoAlojamiento: 60,
+                    costoAlimentacion: 35,
+                    imagen: "malaga.png"
+                },
+                {
+                    id: 5,
+                    nombre: "Huelva",
+                    costoAlojamiento: 24,
+                    costoAlimentacion: 15,
+                    imagen: "huelva.png"
+                },
+                {
+                    id: 6,
+                    nombre: "Jaén",
+                    costoAlojamiento: 32,
+                    costoAlimentacion: 15,
+                    imagen: "jaen.png"
+                },
+                {
+                    id: 7,
+                    nombre: "Cádiz",
+                    costoAlojamiento: 24,
+                    costoAlimentacion: 17,
+                    imagen: "cadiz.png"
+                },
+                {
+                    id: 8,
+                    nombre: "Córdoba",
+                    costoAlojamiento: 28,
+                    costoAlimentacion: 20,
+                    imagen: "cordoba.png"
+                }
+            ];
+            //Selección de Elementos del DOM: Selecciona elementos del DOM 
+            //necesarios para la interacción y manipulación de datos, como el contenedor de destinos, la lista de ruta, etc.
+            const contenedorDestinos = document.querySelector('.destinos');
+            const listaRuta = document.getElementById('listaRuta');
+            const totalDiasElemento = document.getElementById('totalDias');
+            const costoTotalElemento = document.getElementById('costoTotal');
+            let totalDias = 0;
+            let costoTotal = 0;
+            let destinosSeleccionados = [];
+
+            // Función cargarDestinos(): Esta función crea elementos HTML para mostrar cada destino dentro del contenedor
+            // de destinos. También asigna un evento de clic a cada botón "Añadir a la ruta" para permitir la selección de destinos.
+            function cargarDestinos() {
+                contenedorDestinos.innerHTML = ''; // Limpiamos el contenedor
+                provincias.forEach(destino => {
+                    const destinoDiv = document.createElement('div');//creamos el div destino
+                    destinoDiv.classList.add('destino');//y se le añade la clase= destino
+
+                    const imagenDestino = document.createElement('img');//creamos los elementos imágenes en el div class=destinos
+                    imagenDestino.src = destino.imagen;//le damos las etiquetas src a las imagenes
+                    imagenDestino.alt = destino.nombre;
+
+                    const infoDestino = document.createElement('div');//creo el div para poner la informacion del destino
+                    infoDestino.innerHTML = //uso las comillas invertidas para poder insertar js en html y lo concateno
+                    `   <h3>${destino.nombre}</h3>
+                        <p>Costo alojamiento: ${destino.costoAlojamiento}€</p>
+                        <p>Costo alimentación: ${destino.costoAlimentacion}€</p>
+                        <button class="botonAgregar">Añadir a la ruta</button>
+                    `;
+                    //pongo el evento de hacer clic para agregar los destinos
+                    infoDestino.querySelector('.botonAgregar').addEventListener('click', () => agregarDestino(destino));
+
+                    //pongo ya en el nodo padre las tres partes que hemos creado para que se repitan
+                    destinoDiv.appendChild(imagenDestino);
+                    destinoDiv.appendChild(infoDestino);
+
+                    contenedorDestinos.appendChild(destinoDiv);
+                });
+            }
+
+            // Función para agregar un destino a la ruta
+            function agregarDestino(destino) {
+                destinosSeleccionados.push(destino);
+                cargarRutas();
+            }
+
+            // Función para eliminar un destino de la ruta
+            function eliminarDestino(index) {
+                destinosSeleccionados.splice(index, 1);
+                cargarRutas();
+            }
+
+            // Función para cargar la ruta y saber lo que cuesta lo que hemos elegido
+            function cargarRutas() {
+                listaRuta.innerHTML = '';
+                totalDias = destinosSeleccionados.length; // Actualizamos el total de días
+                costoTotal = 0; // Reiniciamos el costo total
+
+                destinosSeleccionados.forEach((destino, index) => {
+                    const elementoLista = document.createElement('li');
+                    elementoLista.innerHTML = `${destino.nombre} - Costo alojamiento: ${destino.costoAlojamiento}€ - Costo alimentación: ${destino.costoAlimentacion}€ <button class="botonEliminar">Eliminar</button>`;//uso de template string con las ``
+                    elementoLista.querySelector('.botonEliminar').addEventListener('click', () => eliminarDestino(index));
+                    listaRuta.appendChild(elementoLista);
+
+                    costoTotal += destino.costoAlojamiento + destino.costoAlimentacion;
+                });
+
+                totalDiasElemento.textContent = totalDias;
+                costoTotalElemento.textContent = costoTotal;
+            }
+
+            // Cargamos los destinos al cargar la página
+            cargarDestinos();
+        });
+    </script>
+</body>
+
+</html>

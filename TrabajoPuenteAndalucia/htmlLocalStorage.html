@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinos en Andalucía</title>
+    <style>
+        /* Estilo para el contenedor principal */
+        .contenedor {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        /* Estilos para el contenedor de destinos */
+        .destinos {
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .destino {
+            width: 50%;
+            padding: 10px;
+        }
+
+        .destino img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos para el contenedor de la ruta */
+        .ruta {
+            width: 40%;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        /* Estilos para la lista de la ruta */
+        #listaRuta {
+            list-style: none;
+            padding: 0;
+        }
+
+        #listaRuta li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="destinos">
+            <!-- Aquí se cargarán los destinos -->
+        </div>
+        <div class="ruta">
+            <h2>Ruta</h2>
+            <ul id="listaRuta"></ul>
+            <p>Total de días: <span id="totalDias">0 días</span></p>
+            <p>Coste total de alojamiento: <span id="costoTotal">0 €</span></p>
+        </div>
+    </div>
+    <script src="localStorage.js"></script>
+</body>
+
+</html>
