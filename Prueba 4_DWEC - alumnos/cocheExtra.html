@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Soy un configurador de vehículos</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script>
+    const extras = [{
+        id: 1,
+        nombre: 'Luces antiniebla',
+        precio: 123,
+        imagen: 'img/antiniebla.jpg'
+      },
+      {
+        id: 2,
+        nombre: 'Llantas modelo Tornado',
+        precio: 542.56,
+        imagen: 'img/llantas1.jpg'
+      },
+      {
+        id: 3,
+        nombre: 'Paquete iluminación básico',
+        precio: 2146,
+        imagen: 'img/packilu.jpg'
+      },
+      {
+        id: 4,
+        nombre: 'Porta equipajes techo básico',
+        precio: 756.78,
+        imagen: 'img/porta.jpg'
+      },
+      {
+        id: 5,
+        nombre: 'Porta equipajes techo deluxe',
+        precio: 1756.78,
+        imagen: 'img/porta2.jpg'
+      },
+      {
+        id: 6,
+        nombre: 'Vaca',
+        precio: 175634.78,
+        imagen: 'img/vaca2.jpg'
+      }
+    ];
+
+    let carrito = [];
+
+    document.addEventListener('DOMContentLoaded', function () {
+      renderProductos();
+      renderCarrito();
+    });
+
+    function renderProductos() {
+      const itemsContainer = document.getElementById('items');
+
+      extras.forEach(extra => {
+        const itemCard = document.createElement('div');
+        itemCard.classList.add('card', 'col-sm-4');
+
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+
+        const title = document.createElement('h5');
+        title.classList.add('card-title');
+        title.textContent = extra.nombre;
+
+        const image = document.createElement('img');
+        image.classList.add('img-fluid');
+        image.src = extra.imagen;
+
+        const price = document.createElement('p');
+        price.classList.add('card-text');
+        price.textContent = `${extra.precio} €`;
+
+        const addButton = document.createElement('button');
+        addButton.classList.add('btn', 'btn-primary');
+        addButton.textContent = '+';
+        addButton.dataset.id = extra.id;
+        addButton.addEventListener('click', addExtra);
+
+        cardBody.appendChild(title);
+        cardBody.appendChild(image);
+        cardBody.appendChild(price);
+        cardBody.appendChild(addButton);
+
+        itemCard.appendChild(cardBody);
+
+        itemsContainer.appendChild(itemCard);
+      });
+    }
+
+    function addExtra(event) {
+      const extraId = parseInt(event.target.dataset.id);
+      const extra = extras.find(extra => extra.id === extraId);
+
+      const index = carrito.findIndex(item => item.id === extraId);
+      if (index !== -1) {
+        carrito[index].cantidad++;
+      } else {
+        extra.cantidad = 1;
+        carrito.push(extra);
+      }
+
+      renderCarrito();
+    }
+
+    function renderCarrito() {
+      const carritoContainer = document.getElementById('carrito');
+      carritoContainer.innerHTML = '';
+
+      carrito.forEach(extra => {
+        const item = document.createElement('li');
+        item.classList.add('list-group-item', 'text-right', 'mx-2');
+        item.textContent = `${extra.nombre} x ${extra.cantidad} - ${extra.precio * extra.cantidad} €`;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('btn', 'btn-danger', 'mx-2');
+        deleteButton.textContent = '-';
+        deleteButton.dataset.id = extra.id;
+        deleteButton.addEventListener('click', () => removeExtra(extra.id));
+
+        item.appendChild(deleteButton);
+        carritoContainer.appendChild(item);
+      });
+
+      const totalElement = document.getElementById('total');
+      const total = carrito.reduce((acc, extra) => acc + (extra.precio * extra.cantidad), 0);
+      totalElement.textContent = total.toFixed(2);
+    }
+
+    function removeExtra(extraId) {
+      const index = carrito.findIndex(extra => extra.id === extraId);
+      if (carrito[index].cantidad > 1) {
+        carrito[index].cantidad--;
+      } else {
+        carrito.splice(index, 1);
+      }
+      renderCarrito();
+    }
+
+    function vaciarCarrito() {
+      carrito = [];
+      renderCarrito();
+    }
+  </script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <main id="items" class="col-sm-8 row"></main>
+
+      <aside class="col-sm-4">
+        <h2>Multa final</h2>
+        <ul id="carrito" class="list-group"></ul>
+        <hr>
+        <p class="text-right">Total: <span id="total"></span>&euro;</p>
+        <button id="boton-vaciar" class="btn btn-danger" onclick="vaciarCarrito()">Empezar de cero</button>
+      </aside>
+    </div>
+  </div>
+
+</body>
+
+</html>
