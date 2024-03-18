@@ -4,6 +4,9 @@ let carrito = [];
 document.addEventListener("DOMContentLoaded", function() {
   renderProductos();
   renderCarrito();
+
+  const botonVaciar = document.getElementById("boton-vaciar");
+  botonVaciar.addEventListener('click', vaciarCarrito);
 });
 
 /**
@@ -124,6 +127,6 @@ function calcularTotal() {
  * Función que vacía el carrito y vuelve a pintarlo
  */
 function vaciarCarrito() {
-  carrito.length = 0;
+  carrito= [];
   renderCarrito();
 }
