@@ -1,0 +1,73 @@
+Con esta prueba práctica trabajaremos los siguientes resultados de aprendizaje:
+RESULTADOS DE APRENDIZAJE
+1. Selecciona las arquitecturas y tecnologías de programación sobre clientes Web, identificando y analizando las capacidades y
+características de cada una.
+2. Escribe sentencias simples, aplicando la sintaxis del lenguaje y verificando su ejecución sobre navegadores Web.
+3. Escribe código, identificando y aplicando las funcionalidades aportadas por los objetos predefinidos del lenguaje.
+4. Programa código para clientes Web analizando y utilizando estructuras definidas por el usuario.
+5. Desarrolla aplicaciones Web interactivas integrando mecanismos manejadores de eventos.
+6. Desarrolla aplicaciones Web analizando y aplicando las características del modelo de objetos del documento.
+EJERCICIO
+Se pide que crees el archivo script.js para dar respuesta a los
+siguientes requerimientos. Puedes implementarlo desde cero o utilizar como plantilla el archivo
+script_template.js. Sólo pido que se suba el archivo script.js.
+REQUERIMIENTOS
+1. Al cargar la página se creará desde Javascript el contenido necesario para mostrar los diferentes extras que
+se pueden añadir a los vehículos.
+2.- Al hacer click sobre el botón añadir de cualquier extra, éste se añadirá al carrito de la compra,
+actualizándose, tanto el nº de unidades como el precio total.
+3. Se deberá ofrecer la posibilidad de eliminar un determinado extra implementando un botón para tal
+efecto. Se puede optar por eliminar todas las unidades de ese extra añadidas hasta el momento o eliminar de
+uno en uno (ver rúbrica).
+4. Se implementará la funcionalidad necesaria para que al pulsar sobre un determinado botón se elimine
+todo el contenido del carrito.
+Los criterios de calificación son los siguientes:
+Criterio de calificación	
+Se muestra la información esperada por cada ítem. Imagen, texto, precio y botón añadir.	
+No conseguido
+0 puntos
+1 ó 2 de los 4
+1 puntos
+3 de 4
+2 puntos
+Totalmente conseguido
+4 puntos
+Al hacer clic sobre el botón añadir el extra aparece en el carrito	
+No conseguido
+0 puntos
+Parcialmente conseguido
+1 puntos
+Totalmente conseguido
+2 puntos
+Al añadir un extra se actualiza el coste	
+No conseguido
+0 puntos
+Parcialmente conseguido
+1 puntos
+Totalmente conseguido
+2 puntos
+Al añadir un extra más de una vez se actualiza la linea de carrito con las unidades correctas	
+No conseguido
+0 puntos
+Parcialmente conseguido
+1 puntos
+Totalmente conseguido
+4 puntos
+Al pulsar el botón eliminar de un extra añadido	
+No conseguido
+0 puntos
+Si hay más de uno se eliminan todos
+2 puntos
+Se eliminan de uno en uno
+4 puntos
+Se pregunta al usuario si los quiere eliminar todos o de manera individual y se actúa en consecuencia
+8 puntos
+Al pulsar sobre el botón 'Borrar todo' se eliminan los extras que se hubieran añadido	
+No conseguido
+0 puntos
+Parcialmente conseguido
+1 puntos
+Totalmente conseguido
+2 puntos
+---------------------------------------
+Los archivos en de los que se parte para hacer el programa en javascript son los siguientes. Desde ahí, desarrolla el ejercicio para conseguir la puntuación máxima. 
