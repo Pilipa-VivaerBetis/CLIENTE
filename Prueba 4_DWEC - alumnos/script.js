@@ -98,21 +98,32 @@ function borrarItemCarrito(event) {
     if (count > 1) {
       const confirmarBorrado = confirm(`¿Deseas eliminar todos los ${count} extras de este tipo?`);
       if (confirmarBorrado) {
-        carrito = carrito.filter(item => item !== itemId);
+        eliminarExtras(itemId);
       } else {
         // Si el usuario cancela la eliminación de todos, eliminar solo uno
-        const index = carrito.findIndex(item => item === itemId);
-        carrito.splice(index, 1);
+        eliminarUnExtra(itemId);
       }
     } else {
       // Si solo hay uno, eliminarlo directamente
-      const index = carrito.findIndex(item => item === itemId);
-      carrito.splice(index, 1);
+      eliminarUnExtra(itemId);
     }
     
     renderCarrito();
   }
-
+  /**
+   * Función para eliminar un solo extra del carrito
+   */
+function eliminarUnExtra(itemId){
+    const index = carrito.findIndex(item => item === itemId);
+        carrito.splice(index, 1);
+}
+/**
+ * Función para eliminar todos los extras del mismo tipo del carrito
+ * 
+ */
+function eliminarExtras (itemId){
+    carrito = carrito.filter(item => item !== itemId);
+}
 /**
  * Calcula el precio total teniendo en cuenta los productos repetidos
  */
