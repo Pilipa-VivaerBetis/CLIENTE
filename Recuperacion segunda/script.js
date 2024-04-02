@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function(){
  renderCards();
 //  renderBienes();
 
- const botonResetear =document.getElementById("boton-resetear");
- botonResetear.addEventListener('click', botonVaciar);
+ //const botonResetear =document.getElementById("boton-resetear");
+// botonResetear.addEventListener('click', botonVaciar);
 });
 
 /**
@@ -15,27 +15,23 @@ document.addEventListener("DOMContentLoaded", function(){
 function renderCards(){
     const itemsContainer =document. getElementById('items');
     bienes.forEach(bien =>{
-        const div = document. createElement("div");
+        const div = document.createElement("div");
         div.classList.add("card", "col-sm-9");
 
         const cardBody = document.createElement("div");
         cardBody.classList.add("card-body");
 
         const title = document.createElement("h2");
-        title.classList.add("active_name");
-        title.textContent = bienes.nombre;
+        title.textContent = bien.active_name;
 
         const subtitulo = document.createElement("h3");
-        subtitulo.classList.add("counseling");
-        subtitulo.textContent= bienes.subtitulo;
+        subtitulo.textContent= bien.counseling;
        
         const provincia = document.createElement("h2");
-        provincia.classList.add("province");
-        provincia.textContent= bienes.provincia;
+        provincia.textContent=bien.province;
 
-        const uso = document. createElement("p");
-        uso.classList.add("current_usage");
-        uso.textContent = "current_usage";
+        const uso = document.createElement("p");
+        uso.textContent =bien.current_usage;
         uso.addEventListener("click", addFiltro);
 
         cardBody.appendChild(title);
@@ -48,6 +44,11 @@ function renderCards(){
         itemsContainer.appendChild(div);
 
     });
+    renderCarrito();
+}
+
+/**Función para filtrar provincias */
+function filtrarProvincia(){
 
 }
 
@@ -55,19 +56,34 @@ function renderCards(){
  * Funcion para que se muestren los filtros en el array carrito
  *  */
 function renderCarrito(){
-    const carritoContainer = document.getElementById("carrito");
-    carritoContainer.innerHTML = "";
+    const carritoContainer = document.getElementById('totales');
+    carritoContainer.innerHTML =" ";
+
+    const tituloFiltro=document.createElement("h1");
+    tituloFiltro.textContent="Filtros y totales";
+
+    const subtituloFiltro=document.createElement("h3");
+    subtituloFiltro.textContent="Filtros rápidos";
+    subtituloFiltro.classList.add('lado-derecho');
 
     provincias.forEach(provincia=>{
         const button = document.createElement("button");
-        button.classList.add("provincia");
+        button.textContent=provincia;
         button.addEventListener("click", filtrarProvincia);
 
     })
+
+    carritoContainer.appendChild (tituloFiltro);
+    carritoContainer.appendChild (subtituloFiltro);
+    carritoContainer.appendChild (provincia);
+
+     
+
+    function añadirBienes(){
     bienes.forEach(bien=> {
         const contador = 0;
 
-    })
+    })}
 
     
 }
