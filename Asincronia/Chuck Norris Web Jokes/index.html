@@ -12,8 +12,11 @@
         <h1>Chistes de Chuck Norris</h1>
         <button class="btn btn-primary" id="randomButton">Chistes aleatorios</button>
         <div>
-            <input type="text" id="categoryInput" placeholder="Escribe una categoria">
-            <button class="btn btn-outline-success" id="categoryButton">Consigue un chiste por categoria</button>
+            <select id="categorySelect">
+                <option value="">Seleccionar categoría</option>
+                <!-- Las opciones de categorías se generarán dinámicamente desde JavaScript -->
+            </select>
+            <button class="btn btn-outline-success" id="categoryButton">Obtener Chiste por Categoría</button>
         </div>
         <div>
             <input type="text" id="textInput" placeholder="Pon una palabra clave">

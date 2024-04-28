@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const randomButton = document.getElementById("randomButton");
+    const categorySelect = document.getElementById("categorySelect");
     const categoryButton = document.getElementById("categoryButton");
     const textButton = document.getElementById("textButton");
     const jokeDisplay = document.getElementById("jokeDisplay");
@@ -7,6 +8,19 @@ document.addEventListener("DOMContentLoaded", function() {
     randomButton.addEventListener("click", obtenerChisteAleatorio);
     categoryButton.addEventListener("click", obtenerChistePorCategoria);
     textButton.addEventListener("click", buscarChiste);
+
+    // Obtener y cargar las categorías disponibles al cargar la página
+    fetch("https://api.chucknorris.io/jokes/categories")
+        .then(response => response.json())
+        .then(categories => {
+            categories.forEach(category => {
+                const option = document.createElement("option");
+                option.value = category;
+                option.textContent = category;
+                categorySelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error("Error al cargar categorías:", error));
 
     function obtenerChisteAleatorio() {
         fetch("https://api.chucknorris.io/jokes/random")
@@ -18,14 +32,19 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function obtenerChistePorCategoria() {
-        const categoryInput = document.getElementById("categoryInput").value;
-        fetch(`https://api.chucknorris.io/jokes/random?category=${categoryInput}`)
-            .then(response => response.json())
-            .then(data => {
-                mostrarChiste(data.value);
-            })
-            .catch(error => console.error(`Error al obtener chiste de la categoría ${categoryInput}:`, error));
+        const categoryInput = categorySelect.value;
+        if (categoryInput) {
+            fetch(`https://api.chucknorris.io/jokes/random?category=${categoryInput}`)
+                .then(response => response.json())
+                .then(data => {
+                    mostrarChiste(data.value);
+                })
+                .catch(error => console.error(`Error al obtener chiste de la categoría ${categoryInput}:`, error));
+        } else {
+            alert("Por favor, seleccione una categoría.");
+        }
     }
+
 
     function buscarChiste() {
         const textInput = document.getElementById("textInput").value;
