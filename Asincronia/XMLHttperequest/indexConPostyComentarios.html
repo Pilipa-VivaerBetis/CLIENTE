@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API JSONPlaceholder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="container-fluid form text-center">
+        <br><br>
+    <!-- Selector de usuarios -->
+    <label for="usuarios">Selecciona un usuario:</label>
+    <select id="usuarios"></select>
+    <br><br>
+    <!-- Selector de posts del usuario seleccionado -->
+    <label for="posts">Posts del usuario:</label>
+    <select id="posts"></select>
+    <br><br>
+    <!-- Selector de comentarios del post seleccionado -->
+    <label for="comentarios">Comentarios del post:</label>
+    <select id="comentarios"></select>
+    <br><br>
+    <!-- Área de texto para editar contenido de comentarios -->
+    <textarea id="editarContenido" rows="4" cols="50"></textarea>
+    <button onclick="editar()">Editar</button>
+    </div>
+    <script>
+        // Función para obtener la lista de usuarios desde la API JSONPlaceholder
+        function obtenerUsuarios() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://jsonplaceholder.typicode.com/users", false); // Solicitud síncrona
+            xhr.send();
+            var usuarios = JSON.parse(xhr.responseText);
+            return usuarios;
+        }
+
+        // Función para poblar el selector de usuarios
+        function poblarUsuarios(usuarios) {
+            var select = document.getElementById("usuarios");
+            usuarios.forEach(function(usuario) {
+                var option = document.createElement("option");
+                option.text = usuario.name;
+                option.value = usuario.id;
+                select.appendChild(option);
+            });
+        }
+
+        // Función para obtener los posts de un usuario específico
+        function obtenerPosts(idUsuario) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://jsonplaceholder.typicode.com/posts?userId=" + idUsuario, false); // Solicitud síncrona
+            xhr.send();
+            var posts = JSON.parse(xhr.responseText);
+            return posts;
+        }
+
+        // Función para rellenar el selector de posts
+        function rellenarPost(posts) {
+            var select = document.getElementById("posts");
+            select.innerHTML = "";
+            posts.forEach(function(post) {
+                var option = document.createElement("option");
+                option.text = post.title;
+                option.value = post.id;
+                select.appendChild(option);
+            });
+        }
+
+        // Función para obtener los comentarios de un post específico
+        function obtenerComentarios(idPost) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://jsonplaceholder.typicode.com/comments?postId=" + idPost, false); // Solicitud síncrona
+            xhr.send();
+            var comentarios = JSON.parse(xhr.responseText);
+            return comentarios;
+        }
+
+        // Función para poblar el selector de comentarios
+        function rellenarComentarios(comentarios) {
+            var select = document.getElementById("comentarios");
+            select.innerHTML = "";
+            comentarios.forEach(function(comentario) {
+                var option = document.createElement("option");
+                option.text = comentario.body;
+                option.value = comentario.id;
+                select.appendChild(option);
+            });
+        }
+
+        // Función para editar un comentario seleccionado
+        function editar() {
+            var contenidoEditado = document.getElementById("editarContenido").value;
+            var idComentarioSeleccionado = document.getElementById("comentarios").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("PUT", "https://jsonplaceholder.typicode.com/comments/" + idComentarioSeleccionado, false); // Solicitud síncrona
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify({ body: contenidoEditado }));
+            var comentarioEditado = JSON.parse(xhr.responseText);
+            alert("Comentario editado:\n" + comentarioEditado.body);
+        }
+
+        // Lógica principal
+        var usuarios = obtenerUsuarios();
+        poblarUsuarios(usuarios);
+
+        document.getElementById("usuarios").addEventListener("change", function() {
+            var idUsuario = this.value;
+            var posts = obtenerPosts(idUsuario);
+            rellenarPost(posts);
+            // Obtener y poblar comentarios para el primer post automáticamente
+            if (posts.length > 0) {
+                var idPrimerPost = posts[0].id;
+                var comentarios = obtenerComentarios(idPrimerPost);
+                rellenarComentarios(comentarios);
+            } else {
+                // Limpiar el selector de comentarios si no hay posts
+                document.getElementById("comentarios").innerHTML = "";
+            }
+        });
+
+        document.getElementById("posts").addEventListener("change", function() {
+            var idPost = this.value;
+            var comentarios = obtenerComentarios(idPost);
+            rellenarComentarios(comentarios);
+        });
+    </script>
+</body>
+</html>
