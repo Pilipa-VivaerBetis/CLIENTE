@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API JSONPlaceholder con Promises</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 </head>
+
 <body>
     <div class="container-fluid form text-center">
         <br><br>
-    <!-- Selector de usuarios -->
-    <label for="usuarios">Selecciona un usuario:</label>
-    <select id="usuarios"></select>
-    <br><br>
-    <!-- Selector de posts del usuario seleccionado -->
-    <label for="posts">Posts del usuario:</label>
-    <select id="posts"></select>
-    <br><br>
-    <!-- Selector de comentarios del post seleccionado -->
-    <label for="comentarios">Comentarios del post:</label>
-    <select id="comentarios"></select>
-    <br><br>
-    <!-- Área de texto para editar contenido de comentarios -->
-    <textarea id="editarContenido" rows="4" cols="50"></textarea>
-    <button onclick="editar()">Editar</button>
+        <!-- Selector de usuarios -->
+        <label for="usuarios">Selecciona un usuario:</label>
+        <select id="usuarios"></select>
+        <br><br>
+        <!-- Selector de posts del usuario seleccionado -->
+        <label for="posts">Posts del usuario:</label>
+        <select id="posts"></select>
+        <br><br>
+        <!-- Selector de comentarios del post seleccionado -->
+        <label for="comentarios">Comentarios del post:</label>
+        <select id="comentarios"></select>
+        <br><br>
+        <!-- Área de texto para editar contenido de comentarios -->
+        <textarea id="editarContenido" rows="4" cols="50"></textarea>
+        <button onclick="editar()">Editar</button>
     </div>
     <script>
         // Función para obtener la lista de usuarios desde la API JSONPlaceholder usando Fetch y Promises
@@ -36,7 +38,7 @@
         // Función para poblar el selector de usuarios
         function rellenarUsuarios(usuarios) {
             var select = document.getElementById("usuarios");
-            usuarios.forEach(function(usuario) {
+            usuarios.forEach(function (usuario) {
                 var option = document.createElement("option");
                 option.text = usuario.name;
                 option.value = usuario.id;
@@ -54,7 +56,7 @@
         function rellenarPost(posts) {
             var select = document.getElementById("posts");
             select.innerHTML = "";
-            posts.forEach(function(post) {
+            posts.forEach(function (post) {
                 var option = document.createElement("option");
                 option.text = post.title;
                 option.value = post.id;
@@ -72,7 +74,7 @@
         function rellenarComentarios(comentarios) {
             var select = document.getElementById("comentarios");
             select.innerHTML = "";
-            comentarios.forEach(function(comentario) {
+            comentarios.forEach(function (comentario) {
                 var option = document.createElement("option");
                 option.text = comentario.body;
                 option.value = comentario.id;
@@ -91,13 +93,13 @@
                 },
                 body: JSON.stringify({ body: contenidoEditado })
             })
-            .then(response => response.json())
-            .then(comentarioEditado => {
-                alert("Comentario editado:\n" + comentarioEditado.body);
-            })
-            .catch(error => {
-                console.error('Error al editar el comentario:', error);
-            });
+                .then(response => response.json())
+                .then(comentarioEditado => {
+                    alert("Comentario editado:\n" + comentarioEditado.body);
+                })
+                .catch(error => {
+                    console.error('Error al editar el comentario:', error);
+                });
         }
 
         // Lógica principal
@@ -106,7 +108,7 @@
                 rellenarUsuarios(usuarios);
 
                 // Evento de cambio en el selector de usuarios
-                document.getElementById("usuarios").addEventListener("change", function() {
+                document.getElementById("usuarios").addEventListener("change", function () {
                     var idUsuario = this.value;
                     obtenerPosts(idUsuario)
                         .then(posts => {
@@ -124,7 +126,7 @@
                 });
 
                 // Evento de cambio en el selector de posts
-                document.getElementById("posts").addEventListener("change", function() {
+                document.getElementById("posts").addEventListener("change", function () {
                     var idPost = this.value;
                     obtenerComentarios(idPost)
                         .then(comentarios => {
@@ -137,4 +139,5 @@
             });
     </script>
 </body>
+
 </html>
