@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chistes del día</title>
+</head>
+<body>
+
+    <label for="nombre"><strong>Nombre del protagonista:</strong></label><br/>    
+    <input type="text" id="nombre" required/><br/><br/>
+
+    <label for="lepero"><strong>LEPERO:</strong></label>    
+    <input type="radio" name="tipo" id="lepero" value="lepero"/>
+
+    <label for="jaimito"><strong>JAIMITO:</strong></label>    
+    <input type="radio" name="tipo" id="jaimito" value="jaimito"/>
+    
+    <br/><br/>
+
+    <input type="button" id="btnEnviar" value="Genera chiste" onclick="generaChiste()"/>
+
+    <p id="chiste" style="width: 40%; background-color: #FFC126; color: black;">Estaba Jaimito sentado junto a Iván en un banco y pasó un señor...</p>
+
+    <script>
+        // Array de chistes para cada tipo
+        const chistes = {
+            lepero: [
+                "¿Por qué el lepero lleva una escalera al bar? Porque escucha que los precios están por las nubes.",
+                "¿Qué hace un lepero con un sobre vacío? Enviando su dirección por correo.",
+                "Un lepero va al cine y pregunta: '¿Cuánto dura la película?' 'Dos horas.' 'Ah, perfecto, entonces me das dos de una hora.'"
+            ],
+            jaimito: [
+                "Jaimito, ¿qué haces? 'Nada, profesora.' 'Muy bien, has aprendido rápido.'",
+                "Jaimito, ¿qué tienes en la mano? 'Una mosca, profesora.' '¿Y por qué la tienes en la mano?' 'Porque estaba practicando inglés, profesora.'",
+                "Jaimito, di una palabra que tenga muchas 'O'. 'Goloso, profesora.'"
+            ]
+        };
+
+        // Inicializamos índices para controlar los chistes usados
+        let indices = {
+            lepero: [...Array(chistes.lepero.length).keys()],
+            jaimito: [...Array(chistes.jaimito.length).keys()]
+        };
+
+        // Función para obtener un chiste aleatorio sin repetir
+        function obtenerChiste(tipo) {
+            if (indices[tipo].length === 0) {
+                return "Lo siento, ya no hay más chistes disponibles.";
+            }
+
+            const randomIndex = Math.floor(Math.random() * indices[tipo].length);
+            const chisteIndex = indices[tipo][randomIndex];
+            indices[tipo].splice(randomIndex, 1);
+
+            return chistes[tipo][chisteIndex];
+        }
+
+        // Función principal que genera el chiste
+        function generaChiste() {
+            const nombre = document.getElementById("nombre").value.trim();
+            const tipo = document.querySelector('input[name="tipo"]:checked');
+
+            if (!nombre || !tipo) {
+                alert("Por favor, introduce el nombre del protagonista y selecciona el tipo de chiste.");
+                return;
+            }
+
+            let chiste = obtenerChiste(tipo.value);
+
+            // Reemplazamos el nombre del protagonista en el chiste si es necesario
+            chiste = chiste.replace("Jaimito", nombre).replace("el lepero", nombre);
+
+            document.getElementById("chiste").innerText = chiste;
+        }
+    </script>
+
+</body>
+</html>

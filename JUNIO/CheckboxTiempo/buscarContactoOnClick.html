@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar Contacto</title>
+</head>
+<body>
+  <label for="searchInput">Buscar por nombre de contacto: </label>
+  <input id="searchInput" type="text" />
+  <button onclick="buscarContacto()">Buscar</button>
+  <p id="result"></p>
+  
+  <!-- Incluir el archivo JavaScript con los datos de contactos -->
+  <script src="contacts.js"></script>
+  
+  <script>
+ function buscarContacto() {
+  const para = document.getElementById("result");
+  const input = document.getElementById("searchInput");
+  
+  // Verificar si los elementos fueron encontrados
+  if (!input || !para) {
+    console.error("Elementos no encontrados en el DOM.");
+    return;
+  }
+  
+  const searchName = input.value.toLowerCase();
+  input.value = "";
+  input.focus();
+  para.textContent = "";
+  
+  let contact = contacts.find(contact => {
+    // Buscar por nombre
+    if (contact.name.toLowerCase() === searchName) {
+      return true; 
+    }
+    // Buscar por número de teléfono
+    if (contact.phone === searchName) {
+      return true;
+    }
+    return false;
+  });
+
+  if (contact) {
+    para.textContent = `El número de ${contact.name} es ${contact.phone}.`;
+  } else {
+    para.textContent = "Contacto no encontrado.";
+  }
+}
+
+  </script>
+</body>
+</html>

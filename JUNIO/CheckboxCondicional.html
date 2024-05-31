@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Ejemplo de actualización de ganancias</title>
+  </head>
+  <body>
+    <label for="verificacion-compras">¿Se ha hecho la compra? </label>
+    <input type="checkbox" id="verificacion-compras">
+
+    <p></p>
+
+    <script>
+      const casilla = document.querySelector('input');
+      const parrafo = document.querySelector('p');
+      let comprasHechas = casilla.checked;
+
+      function actualizarganancias() {
+        let gananciasDelNino;
+        if (comprasHechas === true) {
+          gananciasDelNino = 10;
+        } else {
+          gananciasDelNino = 5;
+        }
+
+        parrafo.textContent = `El niño ha ganado \€${gananciasDelNino} esta semana.`;
+      }
+
+      actualizarganancias();
+
+      casilla.addEventListener('change', () => {
+        casilla.disabled = true;
+        comprasHechas = casilla.checked;
+        actualizarganancias();
+      });
+    </script>
+  </body>
+</html>

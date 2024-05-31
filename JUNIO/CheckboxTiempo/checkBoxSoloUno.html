@@ -1,0 +1,40 @@
+<label for="soleado">Soleado</label>
+<input type="checkbox" id="soleado" name="clima" value="soleado" onclick="establecerClima(this)">
+<br>
+<label for="lluvioso">Lluvioso</label>
+<input type="checkbox" id="lluvioso" name="clima" value="lluvioso" onclick="establecerClima(this)">
+<br>
+<label for="nevando">Nevando</label>
+<input type="checkbox" id="nevando" name="clima" value="nevando" onclick="establecerClima(this)">
+<br>
+<label for="nublado">Nublado</label>
+<input type="checkbox" id="nublado" name="clima" value="nublado" onclick="establecerClima(this)">
+<br>
+
+<p></p>
+
+<script>
+function establecerClima(element) {
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  let parrafo = document.querySelector("p");
+
+  checkboxes.forEach(checkbox => {
+    if (checkbox !== element) {
+      checkbox.checked = false;
+    }
+  });
+
+  let eleccion = element.value;
+  parrafo.textContent = element.checked
+    ? eleccion === "soleado"
+      ? "El día está agradable y soleado hoy. ¡Use pantalones cortos! Ve a la playa o al parque y come un helado."
+      : eleccion === "lluvioso"
+      ? "Está lloviendo, tome un abrigo para lluvia y un paraguas, y no se quede por fuera mucho tiempo."
+      : eleccion === "nevando"
+      ? "Está nevando ─ ¡está congelando! Lo mejor es quedarse en casa con una taza caliente de chocolate, o hacer un muñeco de nieve."
+      : eleccion === "nublado"
+      ? "No está lloviendo, pero el cielo está gris y nublado; podría llover en cualquier momento, así que lleve un saco solo por si acaso."
+      : ""
+    : "";
+}
+</script>

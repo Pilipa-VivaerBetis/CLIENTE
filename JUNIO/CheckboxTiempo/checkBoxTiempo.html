@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="soleado">Soleado</label>
+<input type="checkbox" id="soleado" name="clima" value="soleado">
+<br>
+<label for="lluvioso">Lluvioso</label>
+<input type="checkbox" id="lluvioso" name="clima" value="lluvioso">
+<br>
+<label for="nevando">Nevando</label>
+<input type="checkbox" id="nevando" name="clima" value="nevando">
+<br>
+<label for="nublado">Nublado</label>
+<input type="checkbox" id="nublado" name="clima" value="nublado">
+<br>
+
+<p></p>
+
+<script>
+let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+let parrafo = document.querySelector("p");
+
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener("change", establecerClima);
+});
+
+function establecerClima() {
+  let mensajes = [];
+
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      if (checkbox.value === "soleado") {
+        mensajes.push("El día está agradable y soleado hoy. ¡Use pantalones cortos! Ve a la playa o al parque y come un helado.");
+      } else if (checkbox.value === "lluvioso") {
+        mensajes.push("Está lloviendo, tome un abrigo para lluvia y un paraguas, y no se quede por fuera mucho tiempo.");
+      } else if (checkbox.value === "nevando") {
+        mensajes.push("Está nevando ─ ¡está congelando! Lo mejor es quedarse en casa con una taza caliente de chocolate, o hacer un muñeco de nieve.");
+      } else if (checkbox.value === "nublado") {
+        mensajes.push("No está lloviendo, pero el cielo está gris y nublado; podría llover en cualquier momento, así que lleve un saco solo por si acaso.");
+      }
+    }
+  });
+
+  parrafo.textContent = mensajes.join(" ");
+}
+</script>
+
+    
+</body>
+</html>

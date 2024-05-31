@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio sin eventos</title>
+  <style>
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 16px;
+      margin: 8px;
+    }
+    .card-body {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="totales"></div>
+  <div id="items" class="row"></div>
+
+  <script>
+    // Datos de ejemplo
+    const bienes = [
+      { province: 'Madrid', price: 250000, size: 90 },
+      { province: 'Barcelona', price: 300000, size: 85 },
+      { province: 'Valencia', price: 200000, size: 75 },
+      { province: 'Sevilla', price: 220000, size: 80 },
+      { province: 'Madrid', price: 270000, size: 95 }
+    ];
+
+    /**
+     * Función para obtener las provincias únicas de los bienes
+     * 
+     * 
+     * bienes.map(bien => bien.province): Esta parte del código toma el array bienes y crea un nuevo array que contiene solo las provincias de cada objeto en bienes.
+       new Set(...): El constructor Set toma el array de provincias y crea un conjunto de valores únicos, eliminando cualquier duplicado.
+       Array.from(provinciasSet): Convierte el conjunto de nuevo en un array.
+     * 
+     */
+    function conseguirProvincias(bienes) {
+      const provinciasSet = new Set(bienes.map(bien => bien.province));
+      return Array.from(provinciasSet);
+    }
+
+    /**
+     * Función que se encarga de mostrar todas las tarjetas de los bienes
+     */
+    function renderCards(bienesARenderizar = bienes) {
+      const itemsContainer = document.getElementById('items');
+      itemsContainer.innerHTML = '';  // Limpiar antes de renderizar
+      bienesARenderizar.forEach(bien => {
+        const div = document.createElement("div");
+        div.classList.add("card", "col-sm-4");
+
+        const cardBody = document.createElement("div");
+        cardBody.classList.add("card-body");
+
+        Object.keys(bien).forEach(key => {
+          const parrafo = document.createElement("p");
+          parrafo.textContent = `${key}: ${bien[key]}`;
+          cardBody.appendChild(parrafo);
+//           Explicación:
+
+// Object.keys(bien): Devuelve un array con los nombres de las propiedades del objeto bien. Si bien es { province: 'Madrid', price: 250000, size: 90 }, el resultado será ['province', 'price', 'size'].
+// .forEach(key => {...}): Recorre cada clave en el array de claves.
+// bien[key]: Accede al valor correspondiente a la clave actual en el objeto bien.
+
+
+        });
+
+        div.appendChild(cardBody);
+        itemsContainer.appendChild(div);
+      });
+    }
+
+    /**
+     * Función para que se muestren los totales y la información inicial
+     */
+    function renderTotales() {
+      const carritoContainer = document.getElementById('totales');
+      carritoContainer.innerHTML = '';
+
+      const tituloTotales = document.createElement("h1");
+      tituloTotales.textContent = "Totales";
+      carritoContainer.appendChild(tituloTotales);
+
+      const totalInmuebles = document.createElement("p");
+      totalInmuebles.textContent = `Total de inmuebles: ${bienes.length}`;
+      carritoContainer.appendChild(totalInmuebles);
+
+      const provincias = conseguirProvincias(bienes);
+      const totalProvincias = document.createElement("p");
+      totalProvincias.textContent = `Provincias disponibles: ${provincias.join(', ')}`;
+      carritoContainer.appendChild(totalProvincias);
+    }
+
+    // Ejecutar funciones al cargar la página
+    document.addEventListener("DOMContentLoaded", function() {
+      renderCards();
+      renderTotales();
+    });
+
+  </script>
+</body>
+</html>
