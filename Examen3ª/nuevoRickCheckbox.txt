@@ -1,0 +1,41 @@
+Accede al siguiente enlace http://rickandmortyapi.com/documentation y estudia las operaciones que puedes 
+realizar sobre esta api. El archivo en html que nos han dado y que no se puede modificar es el siguiente:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creador de filtros</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script defer src="info.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Información del conjunto de datos -->
+  <h3 class="mb-4">Información del conjunto de datos</h3>
+  <div class="container mt-5" id="dataContainer"></div>
+  <!-- Filtros -->
+  <h3 class="mb-4">Filtros</h3>
+  <div class="container mt-5" id="filterContainer"></div>
+  <!-- Resultados -->
+  <h3 class="mb-4">Resultados</h3>
+  <div class="container mt-5" id="resultsContainer"></div>
+  
+</body>
+</html>
+
+Realizando en javascript lo siguiente:
+
+1. Implementa una funcion que mediante el uso de async/await cree un check box por cada uno de los personajes
+y a su lado salga su nombre, estado y especie.
+
+2. Cuando se haga clic sobre el check box de un personaje, se realizará una llamada asíncrona a la API anterior
+usando el objeto Promise que recuperará la lista de capítulos donde aparece el personaje representado
+en el check pulsado. Aqui será en el row donde tenga que pintar el getAtribute y darle valor caracterId.También se deberá mostrar el total de capitulos.
+
+3. Deberá implementarla de tal forma que se muestre durante 3 segundo la imagen del personaje y toda su informacion
+para inmediatamente después; eliminar esa información y mostrar en su lugar el listado de los 
+episodios, que corresponden a ese personaje.
+
+-Realiza un tratamiento de errores acorde a cada una de las funcionalidades implementadas
+-Que el código sea lo más asequible posible y con variables y funciones escritas en castellano.
