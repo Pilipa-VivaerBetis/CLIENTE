@@ -61,13 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
      * @returns {Promise<Array>} Lista de episodios.
      */
     function obtenerEpisodios(id) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         fetch(`https://rickandmortyapi.com/api/character/${id}`)
           .then(response => response.json())
           .then(data => resolve(data.episode))
           .catch(error => {
             console.error('Error al obtener episodios:', error);
-            reject('Error al obtener los episodios. Intente de nuevo más tarde.');
+            const errorMsg = document.createElement('p');
+            errorMsg.textContent = 'Error al obtener los episodios. Intente de nuevo más tarde.';
+            episodeListContainer.appendChild(errorMsg);
           });
       });
     }
